@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Press Room</title>
+<meta name="description" content="Press Room: a football manager press-conference simulator. Survive a season of journalists, headlines and a nervous board. All clubs and people are fictional.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0f5c5a">
+<meta property="og:title" content="Press Room">
+<meta property="og:description" content="A football manager press-conference simulator. Every word ends up on the back page.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpath d='M50 4 L94 18 V58 C94 88 72 106 50 116 C28 106 6 88 6 58 V18 Z' fill='%230f5c5a' stroke='%23f2b231' stroke-width='6'/%3E%3Ctext x='50' y='80' text-anchor='middle' font-family='Impact,sans-serif' font-size='54' fill='%23f2b231'%3EK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&family=Courier+Prime&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#stage">Skip to game</a>
+<header class="topbar">
+  <div class="brand">
+    <button id="homebtn" class="brandbtn" aria-label="Press Room - start a new season">
+      <span id="crest-slot"></span>
+      <span class="brandtext"><b>PRESS ROOM</b><small id="weekno">Pre-season</small></span>
+    </button>
+  </div>
+  <div id="meters" class="meters" aria-label="Your standing"></div>
+  <div class="tools">
+    <button id="livebtn" class="pill" type="button"><i class="dot" aria-hidden="true"></i><span>Live: off</span></button>
+    <button id="themebtn" class="pill" type="button"><i aria-hidden="true">&#9680;</i><span>Auto</span></button>
+  </div>
+</header>
+
+<main id="stage" class="stage" tabindex="-1"></main>
+
+<footer class="foot">
+  <p>Press Room is a work of fiction. All clubs, players, journalists, outlets, referees and sponsors are invented. Keys: <kbd>1</kbd>-<kbd>6</kbd> tones, <kbd>T</kbd> type, <kbd>Enter</kbd> send, <kbd>N</kbd> next.</p>
+</footer>
+
+<div id="whiteout" aria-hidden="true"></div>
+<div id="toasts" class="toasts" aria-live="polite"></div>
+
+<dialog id="livedlg" aria-labelledby="livetitle">
+  <form method="dialog" class="dlg" onsubmit="return false">
+    <h2 id="livetitle">Live journalists <small>(optional)</small></h2>
+    <p>The game is fully playable offline. If you paste your own <b>Anthropic API key</b>, journalists will write follow-up questions that react to the words you type, and the back-page headline is written live by a fast, low-cost Claude model.</p>
+    <ul class="notice">
+      <li>Your key is stored <b>only in this browser's localStorage</b>.</li>
+      <li>It is sent <b>only to api.anthropic.com</b>, directly from your browser. There is no server in between.</li>
+      <li>Calls are billed to your account. Each typed answer is one short request; each back page is one more.</li>
+      <li>Anyone with access to this browser profile could read a stored key. Use "Forget key" when you are done.</li>
+    </ul>
+    <p id="livestate" class="muted"></p>
+    <label for="apikey">API key</label>
+    <input id="apikey" type="password" autocomplete="off" spellcheck="false" placeholder="sk-ant-...">
+    <p id="livemsg" class="status" role="status"></p>
+    <div class="row wrap">
+      <button type="button" id="savekey" class="btn primary">Save &amp; test</button>
+      <button type="button" id="livetoggle" class="btn">Turn live mode on</button>
+      <button type="button" id="forgetkey" class="btn danger">Forget key</button>
+      <button type="button" id="closelive" class="btn ghost">Close</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="js/data.js"></script>
+<script src="js/live.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
